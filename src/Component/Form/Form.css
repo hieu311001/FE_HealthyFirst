@@ -1,0 +1,10 @@
+.head_form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+}
+.swap_form{
+    color: red;
+    cursor: pointer;
+}

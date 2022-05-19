@@ -1,0 +1,10 @@
+.home_nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.link{
+    font-size: 20px;
+    padding: 0 12px;
+    text-decoration: none !important;
+}
