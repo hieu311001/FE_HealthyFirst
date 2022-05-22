@@ -6,19 +6,59 @@ import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
 import Typography from '@material-ui/core/Typography'
 import FormHelperText from '@material-ui/core/FormHelperText'
+import RadioGroup from '@material-ui/core/RadioGroup'
+import FormLabel from '@material-ui/core/FormLabel'
+import Radio from '@material-ui/core/Radio'
 import { withFormik } from 'formik'
 import * as Yup from 'yup'
 import './Form.css'
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function Register(props) {
+    const navigate = useNavigate();
+    const [login, setLogin] = useState();
+
+    const handleInputChange = (event) => {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        console.log(login)
+        
+        setLogin(vaults => ({
+          ...vaults, 
+          [name]: value
+        }))
+      }
+
+      const handleSubmit = (event) => {
+        event.preventDefault();
+
+        fetch("http://localhost:5000/register", {
+          method: "POST",
+          body: JSON.stringify(login),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        })
+          .then((response) => {
+            if (response.status === 401) {
+              alert("Tai khoan da ton tai");
+            } else {
+              return response.json();
+            }
+          })
+          .then((data) => {
+            navigate("/login");
+          });
+      };
 
         return (
-            <Grid container justify='center' alignContent='center'>
-                <Grid item xs={6} md={4}>
+            <Grid container justify='center' alignContent='center' style={{marginTop: '5%'}}>
+                <Grid item sm={6} xs={11} md={4}>
                     <Paper elevation={4} style={{ padding: '20px 15px', marginTop: '30px' }}>
                         <Typography 
                             variant="headline" 
@@ -26,7 +66,7 @@ function Register(props) {
                             className="head_form"
                         >
                             <h1>Sign Up</h1>
-                            <h2 className="swap_form"><Link to='/login'>Login</Link></h2>
+                            <h2><Link className="swap_form" to='/login'>Login</Link></h2>
                         </Typography>
                         <FormControl fullWidth margin='normal' error={!!props.errors.username}>
                             <InputLabel>Username</InputLabel>
@@ -34,7 +74,10 @@ function Register(props) {
                                 name='username' 
                                 fullWidth 
                                 value={props.values.username}
-                                onChange={props.handleChange}
+                                onChange={(e) => {
+                                    props.handleChange(e);
+                                    handleInputChange(e);
+                                }}
                             />
                             <FormHelperText>{props.errors.username}</FormHelperText>
                         </FormControl>
@@ -45,7 +88,10 @@ function Register(props) {
                                 name='password' 
                                 type='password' 
                                 value={props.values.password}
-                                onChange={props.handleChange}
+                                onChange={(e) => {
+                                    props.handleChange(e);
+                                    handleInputChange(e);
+                                }}
                             />
                             <FormHelperText>{props.errors.password}</FormHelperText>
                         </FormControl>
@@ -60,18 +106,23 @@ function Register(props) {
                             />
                             <FormHelperText>{props.errors.confirm_password}</FormHelperText>
                         </FormControl>
-                        <FormControlLabel
-                            control={
-                                <Checkbox />
-                            }
-                            label='...'
-                            style= {{paddingTop: '20px'}}
-                        />
+                        <FormControl>
+                            <FormLabel id="demo-radio-buttons-group-label">Level:</FormLabel>
+                            <RadioGroup
+                                aria-labelledby="demo-radio-buttons-group-label"
+                                defaultValue="female"
+                                name="level"
+                            >
+                                <FormControlLabel value="1" onClick={handleInputChange} control={<Radio />} label="Level 1" />
+                                <FormControlLabel value="2" onClick={handleInputChange} control={<Radio />} label="Level 2" />
+                            </RadioGroup>
+                        </FormControl>
                         <FormControl fullWidth margin='normal'>
                             <Button
                                 variant='extendedFab'
                                 color='primary'
                                 type='submit'
+                                onClick={handleSubmit}
                             >
                                 Sign Up
                                 </Button>
