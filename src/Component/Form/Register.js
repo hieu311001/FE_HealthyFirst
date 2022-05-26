@@ -52,6 +52,7 @@ function Register(props) {
             }
           })
           .then((data) => {
+              console.log("abc")
             navigate("/login");
           });
       };
@@ -115,6 +116,7 @@ function Register(props) {
                             >
                                 <FormControlLabel value="1" onClick={handleInputChange} control={<Radio />} label="Level 1" />
                                 <FormControlLabel value="2" onClick={handleInputChange} control={<Radio />} label="Level 2" />
+                                <FormHelperText>{props.errors.level}</FormHelperText>
                             </RadioGroup>
                         </FormControl>
                         <FormControl fullWidth margin='normal'>
@@ -123,6 +125,7 @@ function Register(props) {
                                 color='primary'
                                 type='submit'
                                 onClick={handleSubmit}
+                                disabled={props.errors.username || props.errors.password || props.errors.confirm_password}
                             >
                                 Sign Up
                                 </Button>
@@ -139,6 +142,7 @@ function Register(props) {
                 username: '',
                 password: '',
                 confirm_password: '',
+                level: ''
             }
         },
         validationSchema: Yup.object().shape({ // Validate form field
@@ -149,7 +153,8 @@ function Register(props) {
                 .required('Password is required')
                 .min(5, 'Password must have min 5 characters'),
             confirm_password: Yup.string()
-                .oneOf([Yup.ref('password'), null], 'Passwords must match')   
+                .oneOf([Yup.ref('password'), null], 'Passwords must match'),
+            // level: Yup.boolean().required("A radio option is required")   
         }),
     })(Register)
     

@@ -5,8 +5,8 @@ import InputLabel from '@material-ui/core/InputLabel'
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
+// import FormControlLabel from '@material-ui/core/FormControlLabel'
+// import Checkbox from '@material-ui/core/Checkbox'
 import Typography from '@material-ui/core/Typography'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import { withFormik } from 'formik'
@@ -30,8 +30,6 @@ function Login(props) {
           ...vaults, 
           [name]: value
         }))
-
-        console.log(login)
       }
 
       const handleSubmit = (event) => {
@@ -99,19 +97,20 @@ function Login(props) {
                             />
                             <FormHelperText>{props.errors.password}</FormHelperText>
                         </FormControl>
-                        <FormControlLabel
+                        {/* <FormControlLabel
                             control={
                                 <Checkbox />
                             }
                             label='Remember Account'
                             style= {{paddingTop: '20px'}}
-                        />
+                        /> */}
                         <FormControl fullWidth margin='normal'>
                             <Button
                                 variant='extendedFab'
                                 color='primary'
                                 type='submit'
                                 onClick={handleSubmit}
+                                disabled={props.errors.password || props.errors.username}
                             >
                                 Sign In
                                 </Button>
@@ -135,12 +134,6 @@ function Login(props) {
             password: Yup.string()
                 .required('Password is required'),
         }),
-        handleSubmit: (values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 1000);
-          },
     })(Login)
     
 export default LoginForm
