@@ -1,14 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Navbar from 'react-bootstrap/Navbar';
 import './home.css';
-import Header from "./header";
+import LoginNavbar from "./login_navbar";
+import LogoutNavbar from "./logout_navbar";
 
 function Home() {
   return (
-      <>
-        <Header />
-      </>
+    <>
+        <LogoutNavbar />
+    </>
   );
 };
 

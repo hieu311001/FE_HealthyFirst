@@ -35,7 +35,7 @@ function Login(props) {
       const handleSubmit = (event) => {
         event.preventDefault();
 
-        fetch("http://localhost:5000/login", {
+        fetch("http://localhost:5000/signin", {
           method: "POST",
           body: JSON.stringify(login),
           headers: {
@@ -50,9 +50,11 @@ function Login(props) {
             }
           })
           .then((data) => {
+            localStorage.setItem("id", data.id);
             localStorage.setItem("accessToken", data.accessToken);
             localStorage.setItem("username", data.username);
-            localStorage.setItem("level", data.level);
+            localStorage.setItem("role", data.role);
+            localStorage.setItem("area", data.area);
             navigate("/home");
           });
       };

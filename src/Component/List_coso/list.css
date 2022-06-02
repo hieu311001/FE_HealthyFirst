@@ -4,3 +4,22 @@
 .down{
     margin-left: 4px;
 }
+.flex{
+    display: flex;
+}
+
+.table{
+    overflow-x: auto;
+    
+}
+
+table{
+    width: 95%;
+    margin: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .flex{
+        display: block;
+    }
+}

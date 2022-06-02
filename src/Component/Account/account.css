@@ -1,0 +1,15 @@
+label {
+    width: 150px;
+    float: left;
+    font-weight: bold;
+}
+
+.infotable {
+    border: 1px solid;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 3px;
+}
+
+.item {
+    padding: 5px 0;
+}

@@ -1,13 +1,37 @@
-.home_nav{
+
+
+ul {
+    width: fit-content;
+}
+
+a.dropdown-toggle {
+    color: blue;
+}
+
+a.dropdown-toggle:hover {
+    color: red;
+}
+
+.home_nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.link{
+
+.link {
     font-size: 20px;
     padding: 0 12px;
     text-decoration: none !important;
 }
+
 .hidden{
-    display: none;
+    display: none !important;
+}
+
+.accountDropdown ul {
+    transform: translateX(-40%);
+}
+
+.navbar {
+    margin-bottom: 5px;
 }
