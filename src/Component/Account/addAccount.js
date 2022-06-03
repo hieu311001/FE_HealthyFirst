@@ -72,9 +72,8 @@ function AddAccount(props) {
         })
         .then((response) => {
             if (response.status === 401) {
-              alert("Chưa add được");
+              alert("Tài khoản đã tồn tại");
             } else {
-                console.log("add thành công")
               return response.json();
             }
         })
@@ -134,13 +133,12 @@ function AddAccount(props) {
                         {/* error={!!props.errors.role}> */}
                             <InputLabel>Chức vụ</InputLabel>
                             <Select 
-                                value={role}
+                                value="Chuyên viên"
                                 label="role"
                                 name="role"
                                 // value={props.values.role}
                                 onChange={handleChangeRole}
                             >
-                                <MenuItem value="Quản lý">Quản lý</MenuItem>
                                 <MenuItem value="Chuyên viên">Chuyên viên</MenuItem>
                             </Select>
                             <FormHelperText>{props.errors.role}</FormHelperText>

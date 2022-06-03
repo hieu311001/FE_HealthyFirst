@@ -19,7 +19,8 @@ function AccountManagement() {
 
     const callbackFunction = () => {
         setMessage(!message)
-    }
+    }        
+    console.log(message);
 
     const handleClose = () => {
         setShow(false);
@@ -44,8 +45,6 @@ function AccountManagement() {
             }
         })
     }
-    console.log(del)
-    console.log(data);
 
     useEffect(() => {
         fetch("http://localhost:5000/account", {
@@ -57,11 +56,7 @@ function AccountManagement() {
             },
         })
         .then((response) => {
-            if (response.status === 401) {
-              
-            } else {
-              return response.json();
-            }
+            return response.json();
         })
         .then((data) => {
             setData(data);
@@ -72,7 +67,7 @@ function AccountManagement() {
         <>  
             <LoginNavbar />
             <AccountLayout />
-            <div style={{display: "flex"}}>
+            <div className="form_account">
                 <div className="add">
                     <Button onClick={() => setAddOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>
                     <i class="fa-solid fa-plus"></i>

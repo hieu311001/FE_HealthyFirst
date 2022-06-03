@@ -31,3 +31,7 @@ a.dropdown-toggle:hover {
 .accountDropdown ul {
     transform: translateX(-40%);
 }
+
+a{
+    font-size: 20px;
+}

@@ -90,14 +90,14 @@ function List_coso(){
                     <table>
                         <thead>
                             <tr class="demuc">
-                                <th scope="col">STT</th>
-                                <th scope="col">Tên Cơ Sở</th>
-                                <th scope="col">Chủ sở hữu</th>
-                                <th scope="col">SĐT</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Loại hình kinh doanh</th>
-                                <th scope="col" >Số giấy Chứng Nhận</th>
-                                <th scope="col">Status</th>
+                                <th scope="col" class="col-xs-1">STT</th>
+                                <th scope="col" class="col-xs-1">Tên Cơ Sở</th>
+                                <th scope="col" class="col-xs-1">Chủ sở hữu</th>
+                                <th scope="col" class="col-xs-1">SĐT</th>
+                                <th scope="col" class="col-xs-4">Address</th>
+                                <th scope="col" class="col-xs-2">Loại hình kinh doanh</th>
+                                <th scope="col" class="col-xs-1">Số giấy Chứng Nhận</th>
+                                <th scope="col" class="col-xs-1">Status</th>
                             </tr>
                         </thead>
                         <tbody>
