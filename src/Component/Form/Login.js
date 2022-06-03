@@ -34,6 +34,7 @@ function Login(props) {
 
       const handleSubmit = (event) => {
         event.preventDefault();
+        console.log(login);
 
         fetch("http://localhost:5000/signin", {
           method: "POST",

@@ -71,7 +71,7 @@ function List_coso(){
     return (
         <>
             <LoginNavbar />
-            <div className="flex">
+            <div className="flex mt-3">
                 <div className="add">
                     <Button
                         onClick={() => setAddOpen(!open)}

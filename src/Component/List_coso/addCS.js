@@ -62,7 +62,7 @@ function AddCS(props) {
         })
         .then((response) => {
             if (response.status === 401) {
-              alert("Chưa add được");
+              alert("Bạn không có quyền ở khu vực này");
             } else {
                 console.log("add thành công")
               return response.json();

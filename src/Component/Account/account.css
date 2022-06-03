@@ -4,10 +4,20 @@ label {
     font-weight: bold;
 }
 
+button {
+    border: 1px solid;
+    border-radius: 3px;
+    margin: 10px;
+}
+
 .infotable {
     border: 1px solid;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 3px;
+}
+
+.table {
+    overflow-x: auto;
 }
 
 .item {
