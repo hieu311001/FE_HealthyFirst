@@ -68,6 +68,12 @@ function AddCS(props) {
               return response.json();
             }
         })
+
+        props.values.name = "";
+        props.values.owner = "";
+        props.values.phoneNumber = "";
+        props.values.address = "";
+        setArea("");
       };
     return (
         <Grid container justify='center' alignContent='center'>

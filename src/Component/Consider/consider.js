@@ -27,6 +27,7 @@ function Consider() {
 
     const callbackFunction = () => {
         setUpdate(!update);
+        setShow(!show);
     }
 
     const handleClose = () => {
@@ -181,6 +182,9 @@ function Consider() {
                                                 onClick={(e) => {
                                                     setShow(!show);
                                                     setName(datas.name);
+                                                    setTimeout(() => {
+                                                        setId(datas._id);
+                                                    }, 300);
                                                 }}
                                                 >
                                                 <i class="fa-solid fa-pen-to-square"></i>
@@ -203,7 +207,7 @@ function Consider() {
                                                                 aria-describedby="basic-addon3"
                                                             />
                                                         </div>
-                                                        <Review idx={datas._id} parentCallback={callbackFunction}/>
+                                                        <Review idx={id} parentCallback={callbackFunction}/>
                                                     </div>
                                                 </Modal.Body>
                                             </Modal>
@@ -218,7 +222,9 @@ function Consider() {
                                                     setShow2(!show2);
                                                     setName(datas.name);
                                                     setResult(datas.result);
-                                                    setId(datas._id);
+                                                    setTimeout(() => {
+                                                        setId(datas._id);
+                                                    }, 300);
                                                 }}
                                                 >
                                                 <i class="fa-solid fa-note-sticky"></i>

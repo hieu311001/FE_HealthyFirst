@@ -76,10 +76,10 @@ function List_coso(){
     return (
         <>
             <LoginNavbar />
-            <div className="search">
+            <div className="search ml-4">
                 <label htmlFor="search" className="w-100">
                 <h3>Search by Task:</h3>
-                <input className="input-lg form-control mt-2" id="search" placeholder="Name, Owner, Address..." type="text" onChange={handleSearch}/>
+                <input className="input-lg w-50 form-control mt-2" id="search" placeholder="Name, Owner, Address..." type="text" onChange={handleSearch}/>
                 </label>
             </div>
             <div className="flex mt-3">
@@ -128,7 +128,7 @@ function List_coso(){
                                                 {datas.certificateId}
                                                 <span
                                                     onClick={() => setShow(!show)}
-                                                    className={datas.certificateId !== null ? "cId" : "hidden"}
+                                                    className={datas.certificateId !== "" ? "cId" : "hidden"}
                                                 >
                                                     <i class="fa-solid fa-eye ml-2"></i>
                                                 </span>
@@ -159,7 +159,7 @@ function List_coso(){
                                                 </Button>
                                                 <Modal show={show2} onHide={handleClose}>
                                                     <Modal.Header closeButton>
-                                                        <Modal.Title>Giấy chứng nhận</Modal.Title>
+                                                        <Modal.Title>Xóa cơ sở</Modal.Title>
                                                     </Modal.Header>
                                                     <Modal.Body>
                                                         Bạn có chắc chắn muốn xóa không?

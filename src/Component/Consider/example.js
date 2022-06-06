@@ -3,6 +3,7 @@ import { Bar } from "react-chartjs-2";
 
 export default function Example () {
     return (
+        <>        
         <Bar
             data={{
             labels: [
@@ -33,6 +34,8 @@ export default function Example () {
                 text: "Predicted world population (millions) in 2050"
             }
             }}
-        />
+        /> 
+        <h1>Hello</h1>
+        </>
     )
 }
