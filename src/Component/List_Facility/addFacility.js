@@ -143,7 +143,7 @@ function AddCS(props) {
                             />
                             <FormHelperText>{props.errors.address}</FormHelperText>
                         </FormControl>
-                        <FormControl fullWidth margin='normal' className="form-select">
+                        <FormControl fullWidth margin='normal' >
                             <InputLabel id="demo-simple-select-label">Địa bàn:</InputLabel>
                             <Select
                                 labelId="select-label"
@@ -167,8 +167,8 @@ function AddCS(props) {
                                 defaultValue="female"
                                 name="businessType"
                             >
-                                <FormControlLabel value="sản xuất thực phẩm" onClick={handleInputChange} control={<Radio />} label="Sản xuất thực phẩm" />
-                                <FormControlLabel value="dịch vụ ăn uống" onClick={handleInputChange} control={<Radio />} label="Dịch vụ ăn uống" />
+                                <FormControlLabel value="Sản xuất thực phẩm" onClick={handleInputChange} control={<Radio />} label="Sản xuất thực phẩm" />
+                                <FormControlLabel value="Dịch vụ ăn uống" onClick={handleInputChange} control={<Radio />} label="Dịch vụ ăn uống" />
                             </RadioGroup>
                         </FormControl>
                         <FormControl fullWidth>

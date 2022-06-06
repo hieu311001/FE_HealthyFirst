@@ -59,10 +59,10 @@ function Login(props) {
 
         return (
             <>
-            <img alt="" src={require('./background.jpg')} id="login-background"></img>
-            <Grid container justify='center' alignContent='center' style={{marginTop: '5%'}} className="login-text-block">
+            {/* <img alt="" src={require('./background.jpg')} id="login-background"></img> */}
+            <Grid container justify='center' alignContent='center' className="login-text-block w-100 h-100">
                 <Grid item xs={6} md={4}>
-                    <Paper elevation={4} style={{ padding: '20px 15px', marginTop: '30px', background: 'transparent' }} onSubmit={handleSubmit}>
+                    <Paper elevation={4} style={{ padding: '20px 15px', background: 'transparent' }} onSubmit={handleSubmit}>
                         <Typography 
                             variant="headline" 
                             gutterBottom

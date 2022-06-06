@@ -81,7 +81,7 @@ function AddAccount(props) {
 
     return (
         <Grid container justify='center' alignContent='center'>
-                <Grid item xs={9} md={12}>
+                <Grid item xs={9} md={11}>
                     <Paper elevation={4} style={{ padding: '20px 15px', marginBottom: '10px' }} onSubmit={handleSubmit}>
                         <Typography 
                             variant="headline" 
@@ -129,7 +129,7 @@ function AddAccount(props) {
                             />
                             <FormHelperText>{props.errors.confirm_password}</FormHelperText>
                         </FormControl>
-                        <FormControl fullWidth margin='normal' className="form-select" >
+                        <FormControl fullWidth margin='normal' >
                         {/* error={!!props.errors.role}> */}
                             <InputLabel>Chức vụ</InputLabel>
                             <Select 
@@ -143,7 +143,7 @@ function AddAccount(props) {
                             </Select>
                             <FormHelperText>{props.errors.role}</FormHelperText>
                         </FormControl>
-                        <FormControl fullWidth margin='normal' className="form-select">
+                        <FormControl fullWidth margin='normal'>
                             <InputLabel id="demo-simple-select-label">Địa bàn:</InputLabel>
                             <Select
                                 labelId="select-label"

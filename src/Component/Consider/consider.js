@@ -15,11 +15,12 @@ function Consider() {
     const [status, setStatus] = useState("Đã được cấp");
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
+    const [show3, setShow3] = useState(false);
     const [id, setId] = useState();
     const [name ,setName] = useState();
     const [result, setResult] = useState();
     const [update, setUpdate] = useState(true);
-    const [search, setSearch] = React.useState('');
+    const [search, setSearch] = useState('');
 
     const handleSearch = (event) => {
       setSearch(event.target.value.toLowerCase());
@@ -33,6 +34,7 @@ function Consider() {
     const handleClose = () => {
         setShow(false);
         setShow2(false);
+        setShow3(false);
     }
 
     const handleChange = (event) => {
@@ -48,45 +50,6 @@ function Consider() {
           ...vaults, 
           [name]: value
         }))
-    }
-
-    console.log(id);
-    console.log(data)
-
-    const handleUpdateData = () => {
-        fetch("http://localhost:5000/edit_certificate/" + id, {
-            method: "PUT",
-            body: JSON.stringify(updata),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-                Authentication: "Bearer " + localStorage.getItem("accessToken")
-            },
-        })
-        .then((response) => {
-            if (response.status === 401) {
-            alert("Bạn không có quyền ở khu vực này");
-            } else {
-                return response.json();
-            }
-        })
-    }
-
-    const handleUpdate = (event) => {
-        fetch("http://localhost:5000/update_status/" + id, {
-            method: "PUT",
-            body: JSON.stringify(),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-                Authentication: "Bearer " + localStorage.getItem("accessToken")
-            },
-        })
-        .then((response) => {
-            if (response.status === 401) {
-            alert("Bạn không có quyền ở khu vực này");
-            } else {
-                return response.json();
-            }
-        })
     }
 
     useEffect(() => {
@@ -112,7 +75,45 @@ function Consider() {
             setData(data);
         })
     }, [status, update])
-    console.log(data);
+
+    console.log(id);
+
+    const handleUpdateData = () => {
+        fetch("http://localhost:5000/edit_certificate/" + id, {
+            method: "PUT",
+            body: JSON.stringify(updata),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authentication: "Bearer " + localStorage.getItem("accessToken")
+            },
+        })
+        .then((response) => {
+            if (response.status === 401) {
+            alert("Bạn không có quyền ở khu vực này");
+            } else {
+                return response.json();
+            }
+        })
+    }
+
+    const handleUpdate = (event) => {
+        console.log(id + " Hello")
+        fetch("http://localhost:5000/update_status/" + id, {
+            method: "PUT",
+            body: JSON.stringify(),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authentication: "Bearer " + localStorage.getItem("accessToken")
+            },
+        })
+        .then((response) => {
+            if (response.status === 401) {
+            alert("Bạn không có quyền ở khu vực này");
+            } else {
+                return response.json();
+            }
+        })
+    }
 
     return (
         <>
@@ -136,14 +137,14 @@ function Consider() {
                     <table>
                         <thead>
                             <tr class="demuc">
-                                <th scope="col" class="col-sm-1 col-md-1">STT</th>
-                                <th scope="col" class="col-sm-2 col-md-2">Tên Cơ Sở</th>
-                                <th scope="col" class="col-sm-4 col-md-4">Address</th>
-                                <th scope="col" class="col-sm-1 col-md-1">Ngày Cấp</th>
-                                <th scope="col" class="col-sm-1 col-md-1">Ngày Hết Hạn</th>
-                                <th scope="col" class="col-sm-1 col-md-1">Status</th>
-                                <th scope="col" class="col-sm-1 col-md-1">Thanh tra</th>
-                                <th scope="col" class="col-sm-1 col-md-1">Giấy chứng nhận</th>
+                                <th scope="col" class="col-xs-1 col-sm-1 col-md-1">STT</th>
+                                <th scope="col" class="col-xs-2 col-sm-2 col-md-2">Tên Cơ Sở</th>
+                                <th scope="col" class="col-xs-4 col-sm-4 col-md-4">Address</th>
+                                <th scope="col" class="col-xs-1 col-sm-1 col-md-1">Ngày Cấp</th>
+                                <th scope="col" class="col-xs-1 col-sm-1 col-md-1">Ngày Hết Hạn</th>
+                                <th scope="col" class="col-xs-1 col-sm-1 col-md-1">Status</th>
+                                <th scope="col" class="col-xs-1 col-sm-1 col-md-1">Thanh tra</th>
+                                <th scope="col" class="col-xs-1 col-sm-1 col-md-1">Giấy chứng nhận</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -163,15 +164,33 @@ function Consider() {
                                                     (status === "Đã hết hạn" && datas.status === "Đã được cấp" ) ? "update" : "hidden"
                                                 }
                                                 onClick={(e) => {
-                                                    handleUpdate(e);
-                                                    setId(datas._id);
+                                                    setShow3(!show3);
                                                     setTimeout(() => {
-                                                        setUpdate(!update);
-                                                    }, 500);
+                                                        setId(datas._id);
+                                                    }, 300);
                                                 }}
                                                 >
                                                     <i class="fa-solid fa-arrows-spin"></i>
                                             </span>
+                                            <Modal show={show3} onHide={handleClose}>
+                                                    <Modal.Header closeButton>
+                                                        <Modal.Title>Cập nhật cơ sở</Modal.Title>
+                                                    </Modal.Header>
+                                                    <Modal.Body>
+                                                        Bạn có chắc chắn muốn cập nhật không?
+                                                    </Modal.Body>
+                                                    <Modal.Footer>
+                                                        <Button variant="secondary" onClick={handleClose}>
+                                                            Close
+                                                        </Button>
+                                                        <Button variant="secondary" onClick={(e) => {
+                                                            handleClose(e);
+                                                            handleUpdate(e);
+                                                        }}>
+                                                            Đồng Ý
+                                                        </Button>
+                                                    </Modal.Footer>
+                                                </Modal>
                                         </td>
                                         {/* Mẫu thực phẩm */}
                                         <td>
