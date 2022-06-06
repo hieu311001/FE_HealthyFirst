@@ -58,15 +58,20 @@ function Login(props) {
       };
 
         return (
-            <Grid container justify='center' alignContent='center' style={{marginTop: '5%'}}>
+            <>
+            <img alt="" src={require('./background.jpg')} id="login-background"></img>
+            <Grid container justify='center' alignContent='center' style={{marginTop: '5%'}} className="login-text-block">
                 <Grid item xs={6} md={4}>
-                    <Paper elevation={4} style={{ padding: '20px 15px', marginTop: '30px' }} onSubmit={handleSubmit}>
+                    <Paper elevation={4} style={{ padding: '20px 15px', marginTop: '30px', background: 'transparent' }} onSubmit={handleSubmit}>
                         <Typography 
                             variant="headline" 
                             gutterBottom
                             className="head_form"
                         >
-                            <h1>Sign In</h1>
+                            <div className="login-header">
+                                <img alt="" src={require('./logo.png')} id="login-logo"></img>
+                                <h1>Healthy First</h1>
+                            </div>
                         </Typography>
                         <FormControl fullWidth margin='normal' error={!!props.errors.username}>
                             <InputLabel>Username</InputLabel>
@@ -103,7 +108,7 @@ function Login(props) {
                             label='Remember Account'
                             style= {{paddingTop: '20px'}}
                         /> */}
-                        <FormControl fullWidth margin='normal'>
+                        <FormControl fullWidth margin='normal' className='btn btn-primary my-4'>
                             <Button
                                 variant='extendedFab'
                                 color='primary'
@@ -117,6 +122,7 @@ function Login(props) {
                     </Paper>
                 </Grid>
             </Grid>
+            </>
         )
     }
 

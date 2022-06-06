@@ -8,7 +8,7 @@ import './home.css';
 function LogoutNavbar() {
   return (
       <>
-        <Navbar bg="dark" expand="lg" class="text-light">
+        <Navbar className="color-nav" expand="lg" class="text-light">
           <Container>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" className="home_nav">

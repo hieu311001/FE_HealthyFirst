@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from "react-bootstrap/Modal";
 import Collapse from 'react-bootstrap/esm/Collapse';
-import AddCS from './addCS';
+import AddCS from './addFacility';
 import Certificate from '../Certificate/certificate'
 import LoginNavbar from '../home/login_navbar';
 
@@ -16,7 +16,9 @@ function List_coso(){
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
     const [message, setMessage] = useState(true);
+    const [idxData, setIdxData] = useState();
     const [search, setSearch] = React.useState('');
+    
 
     const handleSearch = (event) => {
       setSearch(event.target.value.toLowerCase());
@@ -78,7 +80,7 @@ function List_coso(){
             <LoginNavbar />
             <div className="search ml-4">
                 <label htmlFor="search" className="w-100">
-                <h3>Search by Task:</h3>
+                <h3>Tìm kiếm:</h3>
                 <input className="input-lg w-50 form-control mt-2" id="search" placeholder="Name, Owner, Address..." type="text" onChange={handleSearch}/>
                 </label>
             </div>
@@ -127,8 +129,12 @@ function List_coso(){
                                             <td>
                                                 {datas.certificateId}
                                                 <span
-                                                    onClick={() => setShow(!show)}
-                                                    className={datas.certificateId !== "" ? "cId" : "hidden"}
+                                                    onClick={() => {
+                                                        setShow(!show);
+                                                        setIdxData([datas.name, datas.owner, datas.phoneNumber, datas.address, datas.businessType, datas.certificateId])	
+                                                    }
+                                                    }
+                                                    className={datas.certificateId !== null ? "cId" : "hidden"}
                                                 >
                                                     <i class="fa-solid fa-eye ml-2"></i>
                                                 </span>
@@ -137,7 +143,7 @@ function List_coso(){
                                                         <Modal.Title>Giấy chứng nhận</Modal.Title>
                                                     </Modal.Header>
                                                     <Modal.Body>
-                                                        <Certificate />
+                                                        <Certificate dataFromList={idxData} />
                                                     </Modal.Body>
                                                     <Modal.Footer>
                                                         <Button variant="secondary" onClick={handleClose}>

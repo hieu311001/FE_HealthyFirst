@@ -12,7 +12,7 @@ import FormHelperText from '@material-ui/core/FormHelperText'
 import { FormLabel, RadioGroup, FormControlLabel, Radio, MenuItem, Select } from '@material-ui/core'
 import { withFormik } from 'formik'
 import * as Yup from 'yup'
-import './addCS.css';
+import './addFacility.css';
 // import { Link } from "react-router-dom";
 import { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';

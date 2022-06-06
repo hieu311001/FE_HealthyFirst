@@ -6,7 +6,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 import Consider_layout from './consider_layout';
 
 function Statistical() {
-    const datax = [];
+
     const [postdata, setPostdata] = useState();
     const [data, setData] = useState();
 
@@ -42,10 +42,7 @@ function Statistical() {
         });
     }
 
-    console.log(postdata);
     console.log(data);
-
-    console.log(datax)
 
     return (
         <>
@@ -78,22 +75,19 @@ function Statistical() {
                     <input type="text" name="timeTo" class="form-control" placeholder="Định dạng YYYY/MM/DD" id="basic-url" aria-describedby="basic-addon3" onChange={handleChange}/>
                 </div>
 
-                <button type="button" class="btn btn-primary" onClick={handleClick}>
+                <button type="button" class="btn btn-primary" onClick={(e) => {
+                    handleClick();
+                }}>
                     Biểu đồ
                 </button>
             </div>
-            <div>
+            <div className="div_bar">
                     <BarChart
-                    width={500}
-                    height={300}
-                    data={data}
-                    margin={{
-                        top: 5,
-                        right: 30,
-                        left: 20,
-                        bottom: 5,
-                    }}
-                    barSize={20}
+                        className="bar"
+                        width={600}
+                        height={400}
+                        data={data}
+                        barSize={20}
                     >
                     <XAxis dataKey="months" scale="point" padding={{ left: 10, right: 10 }} />
                     <YAxis />

@@ -64,6 +64,13 @@ a {
     padding-right: 20px;
 }
 
+.color-nav{
+    background-image: url(./bg-nav.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+}
+
 @media screen and (max-width: 962px) {
     .home_nav {
         display: block;

@@ -74,7 +74,7 @@ function AccountManagement() {
             <AccountLayout />
             <div className="search">
                 <label htmlFor="search" className="w-100">
-                <h3>Search by Task:</h3>
+                <h3>Tìm Kiếm:</h3>
                 <input className="input-lg form-control mt-2" id="search" placeholder="Name, Area..." type="text" onChange={handleSearch}/>
                 </label>
             </div>

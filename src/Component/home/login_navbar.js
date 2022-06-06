@@ -29,7 +29,7 @@ function LoginNavbar() {
 
   return (
       <>
-          <Navbar bg="dark" expand="lg" class="text-light">
+          <Navbar className="color-nav" expand="lg" class="text-light">
               <Container className="navbar">
                   <Navbar.Toggle aria-controls="basic-navbar-nav" variant="light" class="text-light" />
                   <Navbar.Collapse id="basic-navbar-nav" className="home_nav">

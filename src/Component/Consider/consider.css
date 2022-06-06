@@ -51,4 +51,16 @@ input[type=radio] {
     padding: 4px;
 }
 
+.div_bar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div_bar tspan{
+    font-size: 16px;
+}
+
+
+
 
