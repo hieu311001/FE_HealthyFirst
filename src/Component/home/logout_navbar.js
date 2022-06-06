@@ -14,8 +14,12 @@ function LogoutNavbar() {
             <Navbar.Collapse id="basic-navbar-nav" className="home_nav">
               <div className="me-auto"></div>
               <Nav>
+                <a className="link" href="#about">About</a>
+              </Nav>
+              <Nav>
                 <Link className="link" to='/'>Home</Link>
               </Nav>
+              <div className="dropdown-divider"></div>
               <Nav>
                 <Link className="link" to='/login'>Login</Link>
               </Nav>

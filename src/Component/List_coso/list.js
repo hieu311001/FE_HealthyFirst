@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.css';
+
 import React from "react";
 import './list.css';
 import { useState, useEffect } from 'react';
@@ -16,6 +16,11 @@ function List_coso(){
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
     const [message, setMessage] = useState(true);
+    const [search, setSearch] = React.useState('');
+
+    const handleSearch = (event) => {
+      setSearch(event.target.value.toLowerCase());
+    };
 
     const callbackFunction = () => {
         setMessage(!message)
@@ -71,6 +76,12 @@ function List_coso(){
     return (
         <>
             <LoginNavbar />
+            <div className="search">
+                <label htmlFor="search" className="w-100">
+                <h3>Search by Task:</h3>
+                <input className="input-lg form-control mt-2" id="search" placeholder="Name, Owner, Address..." type="text" onChange={handleSearch}/>
+                </label>
+            </div>
             <div className="flex mt-3">
                 <div className="add">
                     <Button
@@ -86,85 +97,88 @@ function List_coso(){
                         </div>
                     </Collapse>
                 </div>
-                <div className="table">
+                <div className="table  table-striped table-hover">
                     <table>
-                        <thead>
+                        <thead class="thead-light">
                             <tr class="demuc">
-                                <th scope="col" class="col-xs-1">STT</th>
-                                <th scope="col" class="col-xs-1">Tên Cơ Sở</th>
-                                <th scope="col" class="col-xs-1">Chủ sở hữu</th>
-                                <th scope="col" class="col-xs-1">SĐT</th>
-                                <th scope="col" class="col-xs-4">Address</th>
-                                <th scope="col" class="col-xs-2">Loại hình kinh doanh</th>
-                                <th scope="col" class="col-xs-1">Số giấy Chứng Nhận</th>
-                                <th scope="col" class="col-xs-1">Status</th>
+                                <th scope="col" class="col-sm-1 col-md-1">STT</th>
+                                <th scope="col" class="col-sm-2 col-md-2">Tên Cơ Sở</th>
+                                <th scope="col" class="col-sm-1 col-md-1">Chủ sở hữu</th>
+                                <th scope="col" class="col-sm-1 col-md-1">SĐT</th>
+                                <th scope="col" class="col-sm-4 col-md-4">Address</th>
+                                <th scope="col" class="col-sm-1 col-md-1">Loại hình kinh doanh</th>
+                                <th scope="col" class="col-sm-1 col-md-1">Số giấy Chứng Nhận</th>
+                                <th scope="col" class="col-sm-1 col-md-1">Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             {data && data.map((datas, index) => {
-                                return (
-                                    <tr key={index}>
-                                        <td>{index+1}</td>
-                                        <td>{datas.name}</td>
-                                        <td>{datas.owner}</td>
-                                        <td>{datas.phoneNumber}</td>
-                                        <td>{datas.address}, {datas.area}</td>
-                                        <td>{datas.businessType}</td>
-                                        <td>
-                                            {datas.status}
-                                            <Button
-                                                onClick={() => setShow(!show)}
-                                                className="down btn btn-light"
-                                            >
-                                                <i class="fa-solid fa-eye"></i>
-                                            </Button>
-                                            <Modal show={show} onHide={handleClose}>
-                                                <Modal.Header closeButton>
-                                                    <Modal.Title>Giấy chứng nhận</Modal.Title>
-                                                </Modal.Header>
-                                                <Modal.Body>
-                                                    <Certificate />
-                                                </Modal.Body>
-                                                <Modal.Footer>
-                                                    <Button variant="secondary" onClick={handleClose}>
-                                                        Close
-                                                    </Button>
-                                                </Modal.Footer>
-                                            </Modal>
-                                        </td>
-                                        <td>
-                                            <Button
-                                                class="btn btn-primary" 
-                                                type="button"
-                                                onClick={(e) => {
-                                                    setShow2(!show2);
-                                                    setDel(datas._id);
-                                                }}
+                                if(datas.name.toLowerCase().includes(search) || 
+                                    datas.owner.toLowerCase().includes(search) || 
+                                        datas.address.toLowerCase().includes(search)){
+                                    return (
+                                        <tr key={index}>
+                                            <td>{index+1}</td>
+                                            <td>{datas.name}</td>
+                                            <td>{datas.owner}</td>
+                                            <td>{datas.phoneNumber}</td>
+                                            <td>{datas.address}</td>
+                                            <td>{datas.businessType}</td>
+                                            <td>
+                                                {datas.certificateId}
+                                                <span
+                                                    onClick={() => setShow(!show)}
+                                                    className={datas.certificateId !== null ? "cId" : "hidden"}
                                                 >
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </Button>
-                                            <Modal show={show2} onHide={handleClose}>
-                                                <Modal.Header closeButton>
-                                                    <Modal.Title>Giấy chứng nhận</Modal.Title>
-                                                </Modal.Header>
-                                                <Modal.Body>
-                                                    Bạn có chắc chắn muốn xóa không?
-                                                </Modal.Body>
-                                                <Modal.Footer>
-                                                    <Button variant="secondary" onClick={handleClose}>
-                                                        Close
-                                                    </Button>
-                                                    <Button variant="secondary" onClick={(e) => {
-                                                        handleClose(e);
-                                                        handleDelete(e);
-                                                    }}>
-                                                        Đồng Ý
-                                                    </Button>
-                                                </Modal.Footer>
-                                            </Modal>
-                                        </td>
-                                    </tr>
-                                )
+                                                    <i class="fa-solid fa-eye ml-2"></i>
+                                                </span>
+                                                <Modal show={show} onHide={handleClose}>
+                                                    <Modal.Header closeButton>
+                                                        <Modal.Title>Giấy chứng nhận</Modal.Title>
+                                                    </Modal.Header>
+                                                    <Modal.Body>
+                                                        <Certificate />
+                                                    </Modal.Body>
+                                                    <Modal.Footer>
+                                                        <Button variant="secondary" onClick={handleClose}>
+                                                            Close
+                                                        </Button>
+                                                    </Modal.Footer>
+                                                </Modal>
+                                            </td>
+                                            <td>
+                                                <Button
+                                                    class="btn btn-primary" 
+                                                    type="button"
+                                                    onClick={(e) => {
+                                                        setShow2(!show2);
+                                                        setDel(datas._id);
+                                                    }}
+                                                    >
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </Button>
+                                                <Modal show={show2} onHide={handleClose}>
+                                                    <Modal.Header closeButton>
+                                                        <Modal.Title>Giấy chứng nhận</Modal.Title>
+                                                    </Modal.Header>
+                                                    <Modal.Body>
+                                                        Bạn có chắc chắn muốn xóa không?
+                                                    </Modal.Body>
+                                                    <Modal.Footer>
+                                                        <Button variant="secondary" onClick={handleClose}>
+                                                            Close
+                                                        </Button>
+                                                        <Button variant="secondary" onClick={(e) => {
+                                                            handleClose(e);
+                                                            handleDelete(e);
+                                                        }}>
+                                                            Đồng Ý
+                                                        </Button>
+                                                    </Modal.Footer>
+                                                </Modal>
+                                            </td>
+                                        </tr>
+                                )}
                             })}
                         </tbody>
                     </table>

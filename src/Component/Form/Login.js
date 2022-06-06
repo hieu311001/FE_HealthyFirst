@@ -5,14 +5,11 @@ import InputLabel from '@material-ui/core/InputLabel'
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
-// import FormControlLabel from '@material-ui/core/FormControlLabel'
-// import Checkbox from '@material-ui/core/Checkbox'
 import Typography from '@material-ui/core/Typography'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import { withFormik } from 'formik'
 import * as Yup from 'yup'
 import './Form.css'
-import { Link } from "react-router-dom";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -70,7 +67,6 @@ function Login(props) {
                             className="head_form"
                         >
                             <h1>Sign In</h1>
-                            <h2 ><Link className="swap_form" to='/register'>Register</Link></h2>
                         </Typography>
                         <FormControl fullWidth margin='normal' error={!!props.errors.username}>
                             <InputLabel>Username</InputLabel>

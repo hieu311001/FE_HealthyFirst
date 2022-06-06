@@ -16,6 +16,11 @@ function AccountManagement() {
     const [show2, setShow2] = useState(false);
     const [open, setAddOpen] = useState(false);
     const [message, setMessage] = useState(true);
+    const [search, setSearch] = React.useState('');
+
+    const handleSearch = (event) => {
+      setSearch(event.target.value.toLowerCase());
+    };
 
     const callbackFunction = () => {
         setMessage(!message)
@@ -67,6 +72,12 @@ function AccountManagement() {
         <>  
             <LoginNavbar />
             <AccountLayout />
+            <div className="search">
+                <label htmlFor="search" className="w-100">
+                <h3>Search by Task:</h3>
+                <input className="input-lg form-control mt-2" id="search" placeholder="Name, Area..." type="text" onChange={handleSearch}/>
+                </label>
+            </div>
             <div className="form_account">
                 <div className="add">
                     <Button onClick={() => setAddOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>
@@ -91,6 +102,8 @@ function AccountManagement() {
                         </thead>
                         <tbody>
                             {data && data.map((datas, index) => {
+                                if(datas.username.toLowerCase().includes(search) ||
+                                    datas.area.toLowerCase().includes(search)) {
                                 return (
                                     <tr key={index}>
                                         <td>{index+1}</td>
@@ -128,7 +141,7 @@ function AccountManagement() {
                                                 </Modal.Footer>
                                             </Modal>
                                         </td>
-                                    </tr>);
+                                    </tr>)}
                             })}
                         </tbody>
                     </table>

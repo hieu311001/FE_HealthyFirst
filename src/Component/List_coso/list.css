@@ -18,6 +18,14 @@ table{
     margin: auto;
 }
 
+.hidden{
+    display: none;
+}
+
+.cId{
+    cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
     .flex{
         display: block;

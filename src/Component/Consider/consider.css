@@ -7,3 +7,48 @@
 .search button{
     margin: 0 8px;
 }
+
+.update {
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.hidden{
+    display: none;
+}
+.update i:hover{
+    color: red
+}
+
+.statistical {
+    color: white
+}
+
+.statistical:hover{
+    color: white
+}
+
+.sts button{
+    margin: 8px;
+}
+
+input[type=radio] {
+    width: 20px;
+    height: 20px;
+}
+.layout{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.layout button{
+    margin: 8px;
+}
+
+.layout a{
+    color: #ffffff;
+    padding: 4px;
+}
+
+

@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from "react-bootstrap/Modal";
 import Review from './review'
-import Consider_layout from './consider_layout'
+import Consider_layout from "./consider_layout";
 import './consider.css';
 import Moment from 'react-moment';
 import 'moment-timezone';
 
-function Consider() {
+function Suggestion() {
     const [data, setData] = useState();
     const [updata, setUpData] = useState();
     const [status, setStatus] = useState("Đã được cấp");
@@ -19,24 +19,12 @@ function Consider() {
     const [name ,setName] = useState();
     const [result, setResult] = useState();
     const [update, setUpdate] = useState(true);
-    const [search, setSearch] = React.useState('');
-
-    const handleSearch = (event) => {
-      setSearch(event.target.value.toLowerCase());
-    };
-
-    const callbackFunction = () => {
-        setUpdate(!update);
-    }
 
     const handleClose = () => {
         setShow(false);
         setShow2(false);
     }
 
-    const handleChange = (event) => {
-        setStatus(event.target.value);
-    }
 
     const handleChange2 = (event) => {
         const target = event.target;
@@ -88,13 +76,11 @@ function Consider() {
         })
     }
 
+
     useEffect(() => {
-        const data = {
-            status: status,
-        }
-        fetch("http://localhost:5000/listFoodCertification", {
-            method: "POST",
-            body: JSON.stringify(data),
+        fetch("http://localhost:5000/suggestions" , {
+            method: "GET",
+            body: JSON.stringify(),
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
                 Authentication: "Bearer " + localStorage.getItem("accessToken")
@@ -109,31 +95,17 @@ function Consider() {
         })
         .then((data) => {
             setData(data);
-        })
-    }, [status, update])
-    console.log(data);
+        });
+    }, [])
 
     return (
         <>
             <LoginNavbar />
             <Consider_layout />
-            <div className="search border">
-                <h4 class="mr-4"><span>Lọc Theo:</span></h4>
-                <select 
-                    class="form-select w-50 col-md-8 col-xs-8" 
-                    aria-label="Default select example"
-                    onChange={handleChange}
-                    >
-                    <option value="Đã được cấp">Đã được cấp giấy chứng nhận</option>
-                    <option value="Chưa được cấp">Chưa được cấp giấy chứng nhận</option>
-                    <option value="Đã hết hạn">Giấy chứng nhận đã hết hạn</option>
-                    <option value="Bị thu hồi">Bị thu hồi giấy chứng nhận</option>
-                </select>
-                <input className="form-control w-25 ml-2" id="search" placeholder="Name, Address..." type="text" onChange={handleSearch}/>
-            </div>
-            <div className="table  table-striped table-hover">
+            <div>
+                <div className="table  table-striped table-hover">
                     <table>
-                        <thead>
+                    <thead>
                             <tr class="demuc">
                                 <th scope="col" class="col-sm-1 col-md-1">STT</th>
                                 <th scope="col" class="col-sm-2 col-md-2">Tên Cơ Sở</th>
@@ -147,7 +119,6 @@ function Consider() {
                         </thead>
                         <tbody>
                             {data && data.map((datas, index) => {
-                                if(datas.name.toLowerCase().includes(search) || datas.address.toLowerCase().includes(search)){
                                 return (
                                     <tr key={index}>
                                         <td>{index+1}</td>
@@ -203,7 +174,7 @@ function Consider() {
                                                                 aria-describedby="basic-addon3"
                                                             />
                                                         </div>
-                                                        <Review idx={datas._id} parentCallback={callbackFunction}/>
+                                                        <Review idx={datas._id}/>
                                                     </div>
                                                 </Modal.Body>
                                             </Modal>
@@ -316,7 +287,6 @@ function Consider() {
                                                                 setTimeout(() => {
                                                                     setUpdate(!update);
                                                                 }, 300);
-                                                                handleClose();
                                                             }}
                                                             >
                                                             Cấp Giấy Chứng Nhận
@@ -326,13 +296,14 @@ function Consider() {
                                             </Modal>
                                         </td>
                                     </tr>
-                                )}
+                                )
                             })}
                         </tbody>
                     </table>
                 </div>
+            </div>
         </>
     )
 }
 
-export default Consider;
+export default Suggestion;

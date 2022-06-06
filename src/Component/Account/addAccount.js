@@ -133,7 +133,7 @@ function AddAccount(props) {
                         {/* error={!!props.errors.role}> */}
                             <InputLabel>Chức vụ</InputLabel>
                             <Select 
-                                value="Chuyên viên"
+                                value={role}
                                 label="role"
                                 name="role"
                                 // value={props.values.role}
@@ -167,7 +167,9 @@ function AddAccount(props) {
                                 type='submit'
                                 onClick={(e) => {
                                     handleSubmit(e);
-                                    sendData(e);
+                                    setTimeout(() => {
+                                        sendData(e);
+                                    }, 500);
                                 }}
                                 disabled={props.errors.password || props.errors.username || props.errors.confirm_password}
                             >
